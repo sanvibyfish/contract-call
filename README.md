@@ -5,3 +5,11 @@
 # 主要用到的技术框架
 
 [Next.js](https://nextjs.org/) | [React](https://reactjs.org/) | [react-hook-form](https://react-hook-form.com/) | [rainbowkit](https://www.rainbowkit.com/) | [wagmi](https://wagmi.sh/)
+
+# 如何运行
+
+```
+  yarn install
+
+  yarn dev
+```
