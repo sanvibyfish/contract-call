@@ -83,7 +83,7 @@ export default function Home(props) {
     },
   });
 
-  const { data: readData, refetch, isSuccess: readSuccess, isError: isReadError } = useContractRead(
+  const { data: readData, refetch, isSuccess: readSuccess,isLoading: readIsLoading, isError: isReadError } = useContractRead(
     {
       addressOrName: addrValue,
       contractInterface: abiValue,
@@ -273,7 +273,7 @@ export default function Home(props) {
                                       </SimpleGrid>
                                     )
                                   }
-                                  <Button key={`read-submit-${index}`} value={index} type="submit" colorScheme='blue' isLoading={isLoading}
+                                  <Button key={`read-submit-${index}`} value={index} type="submit" colorScheme='blue' isLoading={readIsLoading}
                                     loadingText='调用中……'
                                     variant='outline'>调用</Button>
                                 </form>
