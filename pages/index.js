@@ -22,7 +22,14 @@ import { useContractWrite, useWaitForTransaction, useNetwork,useContractRead, us
 import { useEffect, useState } from 'react';
 import { etherscanBlockExplorers } from 'wagmi'
 import { MoonIcon, SunIcon } from '@chakra-ui/icons';
-
+const isJsonString = (str) => {
+  try {
+      JSON.parse(str)
+      return true;
+  } catch(e) {
+  }
+  return false;
+}
 export default function Home(props) {
   const toast = useToast()
   const { colorMode, toggleColorMode } = useColorMode()
@@ -177,7 +184,14 @@ export default function Home(props) {
                                   try {
                                     for (const [key, value] of Object.entries(data)) {
                                       if (key == `${index}`) {
-                                        setFormData(Object.values(value))
+                                        const newData = Object.values(value).map((item)=> {
+                                          if(isJsonString(item)) {
+                                            return JSON.parse(item)
+                                          } else {
+                                            return item
+                                          }
+                                        })
+                                        setFormData(newData)
                                         break
                                       }
                                     }
@@ -244,7 +258,14 @@ export default function Home(props) {
                                   try {
                                     for (const [key, value] of Object.entries(data)) {
                                       if (key == `${index}`) {
-                                        setFormData(Object.values(value))
+                                        const newData = Object.values(value).map((item)=> {
+                                          if(isJsonString(item)) {
+                                            return JSON.parse(item)
+                                          } else {
+                                            return item
+                                          }
+                                        })
+                                        setFormData(newData)
                                         break
                                       }
                                     }
