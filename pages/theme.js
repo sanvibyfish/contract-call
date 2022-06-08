@@ -7,6 +7,16 @@ import { extendTheme } from '@chakra-ui/react'
 const config = {
   initialColorMode: 'light',
   useSystemColorMode: false,
+  styles: {
+    global: {
+      a: {
+        color: 'teal.500',
+        _hover: {
+          textDecoration: 'underline',
+        },
+      },
+    }
+  }
 }
 
 // 3. extend the theme

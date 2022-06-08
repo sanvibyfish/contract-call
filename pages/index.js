@@ -139,7 +139,7 @@ export default function Home(props) {
           </div>
         </div>
         <div className="flex pt-12">
-          <div className='flex flex-col pl-6 w-1/2'>
+          <div className='flex flex-col w-1/2'>
             <form key="form-source" onSubmit={sourceHandleSubmit((data) => {
               try {
                 setAddrValue(data.addr)
