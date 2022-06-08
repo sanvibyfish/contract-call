@@ -109,7 +109,7 @@ export default function Home(props) {
     } else if(fnName && contractType == 'read'){
       refetch()
     }
-  }, [formData, fnName,contractType]);
+  }, [formData, fnName,contractType,write,refetch]);
 
   return (
     <div className="container mx-auto">
