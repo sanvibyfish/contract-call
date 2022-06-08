@@ -163,13 +163,13 @@ export default function Home(props) {
                       JSON.parse(abiValue).map((item, index) => {
                         if (item.stateMutability == 'nonpayable' && item.name) {
                           return (
-                            <AccordionItem>
+                            <AccordionItem key={`accordion-item-${index}`}>
                               <h2>
-                                <AccordionButton>
-                                  <Box flex='1' textAlign='left'>
+                                <AccordionButton  key={`accordion-button-${index}`}>
+                                  <Box flex='1' textAlign='left' key={`accordion-box-${index}`}>
                                     {item.name}
                                   </Box>
-                                  <AccordionIcon />
+                                  <AccordionIcon key={`accordion-icon-${index}`} />
                                 </AccordionButton>
                               </h2>
                               <AccordionPanel pb={4}>
@@ -192,13 +192,13 @@ export default function Home(props) {
                                   {
                                     item.inputs && (
 
-                                      <SimpleGrid columns={[2, null, 3]} spacing='12px'>
+                                      <SimpleGrid columns={[2, null, 3]} spacing='12px' key={`simplegrid-${index}`}>
                                         {
-                                          item.inputs.map((input) => {
+                                          item.inputs.map((input,j) => {
                                             return (
-                                              <div className='flex flex-col'>
-                                                <Text mb='8px'>{`${input.name}(${input.type})`}</Text>
-                                                <Input key={`params-${input.name}-${index}`} placeholder={`${input.name}(${input.type})`}  {...register(`${index}.${input.name}`)} />
+                                              <div className='flex flex-col' key={`input-div-${j}`}>
+                                                <Text mb='8px' key={`input-label-${j}`}>{`${input.name}(${input.type})`}</Text>
+                                                <Input key={`params-${input.name}-${j}`} placeholder={`${input.name}(${input.type})`}  {...register(`${index}.${input.name}`)} />
                                               </div>
                                             )
                                           })
@@ -206,7 +206,7 @@ export default function Home(props) {
                                       </SimpleGrid>
                                     )
                                   }
-                                  <Button key={index} value={index} type="submit" colorScheme='blue' isLoading={isLoading}
+                                  <Button key={`submit-${index}`} value={index} type="submit" colorScheme='blue' isLoading={isLoading}
                                     loadingText='调用中……'
                                     variant='outline'>调用</Button>
                                 </form>
@@ -230,10 +230,10 @@ export default function Home(props) {
                       JSON.parse(abiValue).map((item, index) => {
                         if (item.stateMutability != 'nonpayable' && item.name) {
                           return (
-                            <AccordionItem>
+                            <AccordionItem key={`read-accordion-item-${index}`}>
                               <h2>
-                                <AccordionButton>
-                                  <Box flex='1' textAlign='left'>
+                                <AccordionButton key={`read-accordion-button-${index}`}>
+                                  <Box flex='1' textAlign='left' key={`read-accordion-box-${index}`}>
                                     {item.name}
                                   </Box>
                                   <AccordionIcon />
@@ -259,13 +259,13 @@ export default function Home(props) {
                                   {
                                     item.inputs && (
 
-                                      <SimpleGrid columns={[2, null, 3]} spacing='12px'>
+                                      <SimpleGrid columns={[2, null, 3]} spacing='12px' key={`read-simplegrid-${index}`}>
                                         {
-                                          item.inputs.map((input) => {
+                                          item.inputs.map((input,j) => {
                                             return (
-                                              <div className='flex flex-col'>
-                                                <Text mb='8px'>{`${input.name}(${input.type})`}</Text>
-                                                <Input key={`params-${input.name}-${index}`} placeholder={`${input.name}(${input.type})`}  {...readRegister(`${index}.${input.name}`)} />
+                                              <div className='flex flex-col' key={`div-input-${j}`}>
+                                                <Text mb='8px' key={`read-input-label-${j}`}>{`${input.name}(${input.type})`}</Text>
+                                                <Input key={`read-params-${input.name}-${j}`} placeholder={`${input.name}(${input.type})`}  {...readRegister(`${index}.${input.name}`)} />
                                               </div>
                                             )
                                           })
@@ -273,7 +273,7 @@ export default function Home(props) {
                                       </SimpleGrid>
                                     )
                                   }
-                                  <Button key={index} value={index} type="submit" colorScheme='blue' isLoading={isLoading}
+                                  <Button key={`read-submit-${index}`} value={index} type="submit" colorScheme='blue' isLoading={isLoading}
                                     loadingText='调用中……'
                                     variant='outline'>调用</Button>
                                 </form>
