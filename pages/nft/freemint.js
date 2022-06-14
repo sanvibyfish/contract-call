@@ -1,23 +1,5 @@
 import { Box, Button, Heading,Badge,Image, useToast } from '@chakra-ui/react'
 import { useEffect, useState, useCallback } from 'react'
-export async function loadBlockFreeMint() {
-  try{
-    // Call an external API endpoint to get posts
-    const res = await fetch('/api/hello')
-    const data = await res.json()
-    return data
-  }catch(e) {
-    toast({
-      title: '调用失败',
-      description: e.message,
-      status: 'error',
-      duration: 3000,
-      isClosable: true,
-    })
-  }
-
-}
-
 
 export default function FreeMint() {
   const [freeMintList, setFreeMintList] = useState([])
@@ -31,6 +13,23 @@ export default function FreeMint() {
       setFetchtisLoading(true)
     },
     [])
+
+  const loadBlockFreeMint = async () => {
+    try{
+      // Call an external API endpoint to get posts
+      const res = await fetch('/api/hello')
+      const data = await res.json()
+      return data
+    }catch(e) {
+      toast({
+        title: '调用失败',
+        description: e.message,
+        status: 'error',
+        duration: 3000,
+        isClosable: true,
+      })
+    }
+  }
 
   useEffect(() => {
     const fetchData = async () => {
