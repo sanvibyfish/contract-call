@@ -21,6 +21,7 @@ export default function FreeMint() {
       const data = await res.json()
       return data
     }catch(e) {
+      console.log(e)
       toast({
         title: '调用失败',
         description: e.message,
