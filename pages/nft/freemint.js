@@ -1,4 +1,4 @@
-import { Box, Button, Heading,Badge,Image, useToast } from '@chakra-ui/react'
+import { Box, Button, Heading,Badge,Image, useToast, Link } from '@chakra-ui/react'
 import { useEffect, useState, useCallback } from 'react'
 
 export default function FreeMint() {
@@ -63,7 +63,7 @@ export default function FreeMint() {
                       />
                       <div className="flex flex-col pt-2"  key={`item-detail-${j}`}>
                         <div className="flex"  key={`item-detail-div-${j}`}>
-                          <h1 className="text-lg font-bold"  key={`item-detail-name-${j}`}> {item.name}</h1>
+                          <h1 className="text-lg font-bold"  key={`item-detail-name-${j}`}> <Link href={item.etherscan}>{item.name}</Link></h1>
                           <Badge  key={`item-detail-amount-${j}`}>x {item.amount}</Badge>
                         </div>
                       </div>
