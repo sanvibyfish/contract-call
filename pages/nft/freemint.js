@@ -35,24 +35,24 @@ export default function FreeMint() {
       <div className="w-1/2 flex flex-col">
         <Button onClick={handleUpdate} isLoading={isFetchLoading}>刷新</Button>
         {
-          freeMintList && freeMintList.map((freeMint) => {
+          freeMintList && freeMintList.map((freeMint,i) => {
             return (
-              <Box p={5} shadow='md' borderWidth='1px'>
-              <Heading as='h4' size='md'>Block {freeMint.blockNumber}</Heading>
+              <Box p={5} shadow='md' borderWidth='1px' key={`box${i}`}>
+              <Heading as='h4' size='md' key={`heading${i}`}>Block {freeMint.blockNumber}</Heading>
               {
-                freeMint.result && freeMint.result.map((item) => {
+                freeMint.result && freeMint.result.map((item,j) => {
                   return (
-                    <div className="flex p-2" >
-                      <Image
+                    <div className="flex p-2" key={`item${j}`} >
+                      <Image key={`item-img-${j}`}
                       className="p-2"
                         borderRadius='full'
                         boxSize='64px'
                         src={item.image}
                       />
-                      <div className="flex flex-col pt-2">
-                        <div className="flex">
-                          <h1 className="text-lg font-bold"> {item.name}</h1>
-                          <Badge>x {item.amount}</Badge>
+                      <div className="flex flex-col pt-2"  key={`item-detail-${j}`}>
+                        <div className="flex"  key={`item-detail-div-${j}`}>
+                          <h1 className="text-lg font-bold"  key={`item-detail-name-${j}`}> {item.name}</h1>
+                          <Badge  key={`item-detail-amount-${j}`}>x {item.amount}</Badge>
                         </div>
                       </div>
                     </div>
