@@ -23,7 +23,7 @@ export default function FreeMint() {
   useEffect(() => {
     const fetchData = async () => {
       const data = await loadBlockFreeMint()
-      setFreeMintList([...freeMintList, data])
+      setFreeMintList([data,...freeMintList])
       setFetchtisLoading(false)
     }
 
