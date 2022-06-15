@@ -47,7 +47,7 @@ export default function FreeMint() {
       <div className="w-1/2 flex flex-col">
         <Button onClick={handleUpdate} isLoading={isFetchLoading}>刷新</Button>
         {
-          freeMintList && freeMintList.map((freeMint,i) => {
+          freeMintList && freeMintList?.map((freeMint,i) => {
             return (
               <Box p={5} shadow='md' borderWidth='1px' key={`box${i}`}>
               <Heading as='h4' size='md' key={`heading${i}`}>Block {freeMint.blockNumber}</Heading>
