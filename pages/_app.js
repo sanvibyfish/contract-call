@@ -38,7 +38,6 @@ const wagmiClient = createClient({
 })
 function MyApp({ Component, pageProps }) {
   const theme = useTheme()
-  console.log(theme)
 
   return (
     <WagmiConfig client={wagmiClient}>

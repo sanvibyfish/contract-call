@@ -88,5 +88,4 @@ export default async function handler(req, res) {
    
   }
   res.status(200).json({ blockNumber: number, result: result })
-  // res.status(200).json({ blockNumber: 123, result: [] })
 }
