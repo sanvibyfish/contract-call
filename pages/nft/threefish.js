@@ -103,6 +103,8 @@ export default function ThreeFish() {
   );
   
    const { register, handleSubmit, setValue, watch, formState: { errors } } = useForm();
+   const onSubmit = data => console.log(data);
+
   const { data, isError: isContractWriteError, isLoading, isSuccess, write } = useContractWrite(
     {
       addressOrName: '0xe0ef60bb355b4bfb1e43759781b3297df8b1536d',
@@ -151,10 +153,12 @@ export default function ThreeFish() {
 
 
   useEffect(()=>{
-    if(amount != 0 && accountMinted) {
+    console.log(amount)
+    if(amount != 0) {
       write()
     }
   },[amount])
+  
 
   return (
     <div className="flex pt-32 pb-32">
@@ -165,13 +169,9 @@ export default function ThreeFish() {
         <p>Max 5</p>
       </div>
       <div className="w-1/2">
-        <form onSubmit={handleSubmit((data) => {
-              try {
-                setAmount(data.amount)
-              } catch (e) {
-                console.log(e)
-              }
-            })}>
+        <form onSubmit={handleSubmit((data)=>{
+            setAmount(data.amount)
+        })}>
           <div className="flex">
             <Select {...register('amount')} placeholder='Amount' >
               <option value='1'>1</option>
