@@ -74,7 +74,7 @@ export default function ThreeFish() {
   const { data:feeData } = useFeeData()
   const { data: totalSupplyData, refetch, isSuccess: readSuccess,isLoading: readIsLoading, isError: isReadError } = useContractRead(
     {
-      addressOrName: '0xe0ef60bb355b4bfb1e43759781b3297df8b1536d',
+      addressOrName: '0x980132AA884388F1Bc9443eFD62B20C93AaDB4D1',
       contractInterface: abi,
     },
     'totalSupply',
@@ -93,7 +93,7 @@ export default function ThreeFish() {
   const { data: account} = useAccount()
   const { data: numberMinted } = useContractRead(
     {
-      addressOrName: '0xe0ef60bb355b4bfb1e43759781b3297df8b1536d',
+      addressOrName: '0x980132AA884388F1Bc9443eFD62B20C93AaDB4D1',
       contractInterface: abi,
     },
     'numberMinted',
@@ -107,7 +107,7 @@ export default function ThreeFish() {
 
   const { data, isError: isContractWriteError, isLoading, isSuccess, write } = useContractWrite(
     {
-      addressOrName: '0xe0ef60bb355b4bfb1e43759781b3297df8b1536d',
+      addressOrName: '0x980132AA884388F1Bc9443eFD62B20C93AaDB4D1',
       contractInterface: abi,
     },
     'mint',

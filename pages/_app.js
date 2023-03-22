@@ -18,10 +18,26 @@ import {
 } from 'wagmi';
 import { alchemyProvider } from 'wagmi/providers/alchemy';
 import { publicProvider } from 'wagmi/providers/public';
+
+
+ const scroll = {
+  id: 534353,
+  name: 'Scroll Alpha Testnet',
+  network: 'scroll',
+  nativeCurrency: { name: 'ETH', symbol: 'ETH', decimals: 18 },
+  rpcUrls: {
+    default: "https://alpha-rpc.scroll.io/l2",
+  },
+  blockExplorers: {
+    default: "https://blockscout.scroll.io",
+  }
+}
+
+
 const { chains, provider } = configureChains(
-  [chain.mainnet, chain.polygon, chain.optimism, chain.arbitrum, chain.rinkeby],
+  [scroll],
   [
-    alchemyProvider({ alchemyId: process.env.ALCHEMY_ID }),
+    alchemyProvider({ alchemyId: process.env.ALCHEMY_ID}),
     publicProvider()
   ]
 );
