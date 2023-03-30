@@ -4,6 +4,7 @@ import '@rainbow-me/rainbowkit/styles.css';
 import { ChakraProvider, useColorMode } from '@chakra-ui/react'
 import Layout from '../components/layout'
 import { useTheme } from '@chakra-ui/react'
+// import { scrollTestnet } from 'wagmi/chains'
 
 import {
   getDefaultWallets,
@@ -20,22 +21,49 @@ import { alchemyProvider } from 'wagmi/providers/alchemy';
 import { publicProvider } from 'wagmi/providers/public';
 
 
- const scroll = {
-  id: 534353,
-  name: 'Scroll Alpha Testnet',
-  network: 'scroll',
+// const scroll = {
+//   id: 534353,
+//   name: 'Scroll Alpha Testnet',
+//   network: 'scroll',
+//   nativeCurrency: { name: 'ETH', symbol: 'ETH', decimals: 18 },
+//   rpcUrls: {
+//     default: "https://alpha-rpc.scroll.io/l2",
+//   },
+//   blockExplorers: {
+//     default: "https://blockscout.scroll.io",
+//   }
+// }
+const zkSyncTestnet = {
+  id: 280,
+  name: 'zkSync Era Testnet',
+  network: 'zkSyncTestnet',
   nativeCurrency: { name: 'ETH', symbol: 'ETH', decimals: 18 },
   rpcUrls: {
-    default: "https://alpha-rpc.scroll.io/l2",
+    default: {
+      http:["https://testnet.era.zksync.dev"],
+    }
   },
   blockExplorers: {
-    default: "https://blockscout.scroll.io",
+    default: "goerli.explorer.zksync.io",
+  }
+}
+const zkSyncEra = {
+  id: 324,
+  name: 'zkSync Era Mainnet',
+  network: 'zkSyncTestnet',
+  nativeCurrency: { name: 'ETH', symbol: 'ETH', decimals: 18 },
+  rpcUrls: {
+    default: {
+      http:["https://mainnet.era.zksync.io"],
+    }
+  },
+  blockExplorers: {
+    default: "https://explorer.zksync.io",
   }
 }
 
-
 const { chains, provider } = configureChains(
-  [scroll],
+  [zkSyncEra],
   [
     alchemyProvider({ alchemyId: process.env.ALCHEMY_ID}),
     publicProvider()

@@ -72,12 +72,13 @@ export default function ThreeFish() {
     }
   ]
   const { data:feeData } = useFeeData()
+  const contractAddr = '0xA2c733a7ED0363e5abFdC0D829bb0b07483EFC94';
   const { data: totalSupplyData, refetch, isSuccess: readSuccess,isLoading: readIsLoading, isError: isReadError } = useContractRead(
     {
-      addressOrName: '0x980132AA884388F1Bc9443eFD62B20C93AaDB4D1',
-      contractInterface: abi,
+      address: contractAddr,
+      abi: abi,
+      functionName: 'totalSupply'
     },
-    'totalSupply',
     {
       onError(error) {
         toast({
@@ -90,33 +91,38 @@ export default function ThreeFish() {
       },
     }
   );
-  const { data: account} = useAccount()
+
+  // const { data: totalSupplyData, refetch, isSuccess: readSuccess,isLoading: readIsLoading, isError: isReadError } = useContractRead(
+  //   {
+  //     address: contractAddr,
+  //     abi: abi,
+  //     functionName: 'tokenUrl'
+  //   },
+  // );
+
+
+  // const { data: account} = useAccount()
+  const { address, isConnecting, isDisconnected } = useAccount()
   const { data: numberMinted } = useContractRead(
     {
-      addressOrName: '0x980132AA884388F1Bc9443eFD62B20C93AaDB4D1',
-      contractInterface: abi,
-    },
-    'numberMinted',
-    {
-      args: account?.address
+      address: contractAddr,
+      abi: abi,
+      functionName:"numberMinted",
+      args: [address]
     }
   );
   
    const { register, handleSubmit, setValue, watch, formState: { errors } } = useForm();
    const onSubmit = data => console.log(data);
-
   const { data, isError: isContractWriteError, isLoading, isSuccess, write } = useContractWrite(
     {
-      addressOrName: '0x980132AA884388F1Bc9443eFD62B20C93AaDB4D1',
-      contractInterface: abi,
-    },
-    'mint',
-    {
-      args: amount,
+      address: contractAddr,
+      abi: abi,
+      functionName: "mint",
+      args: [amount],
       overrides: {
-        value: accountMinted == 0 ? ethers.utils.parseEther(`${0.3 * (amount - 1)}`) : ethers.utils.parseEther(`${0.3 * amount}`),
-        // gasPrice: gasPrice == 0 ? ethers.utils.parseUnits('30','gwei') : gasPrice.toString()
-
+        value: accountMinted == 0 ? ethers.utils.parseEther(`${0.01 * (amount - 1)}`) : ethers.utils.parseEther(`${0.01 * amount}`),
+        type: 0
       },
       onError(error) {
         toast({
@@ -163,9 +169,9 @@ export default function ThreeFish() {
   return (
     <div className="flex pt-32 pb-32">
       <div className="flex flex-col w-1/2">
-        <Heading>Polygon Netowrk NFT</Heading>
+        <Heading>zkSync Era Netowrk NFT</Heading>
         <Heading> First Free Mint </Heading>
-        <p>Then 0.3 MATIC </p>
+        <p>Then 0.01 ETH </p>
         <p>Max 5</p>
       </div>
       <div className="w-1/2">
@@ -184,6 +190,11 @@ export default function ThreeFish() {
           </div>
         </form>
         <div className="text-5xl flex"> {totalMinted} / 667</div>
+        <div className='flex'>
+          <img src="https://bafybeiam4u2ejfbdism3e2wowmezy2l5whcgkmydi7ibftqpjx5cxsqhhe.ipfs.nftstorage.link/0.png" width={256} height={256}></img>
+          <img src="https://bafybeiam4u2ejfbdism3e2wowmezy2l5whcgkmydi7ibftqpjx5cxsqhhe.ipfs.nftstorage.link/100.png" width={256} height={256}></img>
+          <img src="https://bafybeiam4u2ejfbdism3e2wowmezy2l5whcgkmydi7ibftqpjx5cxsqhhe.ipfs.nftstorage.link/200.png" width={256} height={256}></img>
+        </div>
       </div>
 
 
